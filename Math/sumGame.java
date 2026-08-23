@@ -27,9 +27,13 @@ class Solution {
             }
         }
 
-        int sumDiff = Math.abs(leftSum - rightSum);
-        int qDiff = Math.abs(leftQ - rightQ);
+        // Odd number of '?' → Alice wins
+        if ((leftQ + rightQ) % 2 == 1) {
+            return true;
+        }
 
-        return sumDiff * 2 != qDiff * 9;
+        // Can Bob perfectly balance the sums?
+        return leftSum - rightSum
+                != 9 * (rightQ - leftQ) / 2;
     }
 }
